@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: backup
+  namespace: backup
+spec:
+  template:
+    spec:
+      containers:
+        - command:
+            - sh
+            - -c
+            - rclone version
+          image: rclone/rclone
+          name: backup
+          resources: {}
+          volumeMounts:
+            - name: pv
+              mountPath: /var/lib/pv
+      restartPolicy: Never
+      volumes:
+        - name: "pv"
+          hostPath:
+            path: /var/lib/pv
