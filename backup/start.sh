@@ -2,9 +2,9 @@
 
 # C. Constants
 NS=backup
-JOB_FILE="job.yaml"
-JOB_NAME="backup"
-TIMEOUT=10
+CRONJOB_FILE="cronjob.yaml"
+SECRET=rclone-secret
+RCLONE_PATH=/home/berto/.config/rclone/rclone.conf
 now="--grace-period=0 --force"
 
 # 0. Reset
@@ -13,13 +13,11 @@ kubectl delete ns $NS $now
 # 1. Create ns
 kubectl create ns $NS
 
-# 2. Create deploy jenkins
-kubectl replace -f $JOB_FILE --force
+# 2. Create secret
+kubectl -n $NS create secret generic $SECRET --from-file=$RCLONE_PATH
 
-# 3. Get pod name
-until kubectl -n $NS get pod -l "job-name=$JOB_NAME"; do sleep 1; done
-while kubectl -n $NS get pod -l "job-name=$JOB_NAME"|grep ContainerCreating; do sleep 1; done
-POD_NAME=$(kubectl -n $NS get pod -l "job-name=$JOB_NAME" --no-headers|awk '{print $1}')
+# 3. Create deploy jenkins
+kubectl replace -f $CRONJOB_FILE --force
 
-# 4. Show job log
-timeout $TIMEOUT kubectl logs -n $NS "$POD_NAME" -f
+# 4. Show everything
+kubectl -n $NS get all --show-labels

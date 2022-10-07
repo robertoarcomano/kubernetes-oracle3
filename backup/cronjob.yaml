@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: backup
+  namespace: backup
+spec:
+  schedule: "15 10 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - command:
+                - sh
+                - -c
+                - rclone moveto OpenDrive:/OracleCloud/oracle3-pv/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/pv-old.tgz;
+                  tar zcv /var/lib/pv | rclone rcat OpenDrive:/OracleCloud/oracle3-pv/pv.tgz
+              image: rclone/rclone
+              name: backup
+              resources: {}
+              volumeMounts:
+                - name: pv
+                  mountPath: /var/lib/pv
+                - name: rclone-volume
+                  mountPath: /root/.config/rclone/
+          restartPolicy: Never
+          volumes:
+            - name: pv
+              hostPath:
+                path: /var/lib/pv
+            - name: rclone-volume
+              secret:
+                secretName: rclone-secret
