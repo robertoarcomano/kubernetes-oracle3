@@ -31,10 +31,17 @@ spec:
         - name: DB_USER
           value: "bookstack"
         - name: DB_PASS
-          value: "bookstack"
+          value: "<yourdbpass>"
         - name: DB_DATABASE
-          value: "bookstack"
+          value: "bookstackapp"
+        volumeMounts:
+        - name: "config"
+          mountPath: "/config"
         resources: {}
+      volumes:
+        - name: "config"
+          hostPath:
+            path: /var/lib/pv/bookstack
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 status: {}

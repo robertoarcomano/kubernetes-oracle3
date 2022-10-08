@@ -34,7 +34,14 @@ spec:
           value: "bookstack"
         - name: TZ
           value: "Europe/London"
+        volumeMounts:
+        - name: "config"
+          mountPath: "/config"
         resources: {}
+      volumes:
+        - name: "config"
+          hostPath:
+            path: /var/lib/pv/bookstack
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 status: {}
