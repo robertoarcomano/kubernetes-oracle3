@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bookstackdb
+  name: bookstackdb
+  namespace: bookstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookstackdb
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bookstackdb
+    spec:
+      containers:
+      - image: linuxserver/mariadb
+        name: bookstackdb
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "bookstack"
+        - name: MYSQL_DATABASE
+          value: "bookstack"
+        - name: MYSQL_USER
+          value: "bookstack"
+        - name: MYSQL_PASSWORD
+          value: "bookstack"
+        - name: TZ
+          value: "Europe/London"
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}

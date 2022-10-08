@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bookstackweb
+  name: bookstackweb
+  namespace: bookstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookstackweb
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bookstackweb
+    spec:
+      containers:
+      - image: linuxserver/bookstack
+        name: bookstackweb
+        ports:
+        - containerPort: 80
+        env:
+        - name: APP_URL
+          value: "http://docsvpn.robertoarcomano.com"
+        - name: DB_HOST
+          value: "bookstackdb"
+        - name: DB_USER
+          value: "bookstack"
+        - name: DB_PASS
+          value: "bookstack"
+        - name: DB_DATABASE
+          value: "bookstack"
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}
