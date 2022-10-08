@@ -4,7 +4,7 @@ metadata:
   name: backup
   namespace: backup
 spec:
-  schedule: "15 10 * * *"
+  schedule: "0 1 * * *"
   jobTemplate:
     spec:
       template:
@@ -17,7 +17,11 @@ spec:
                   tar zcv /var/lib/pv | rclone rcat OpenDrive:/OracleCloud/oracle3-pv/pv.tgz
               image: rclone/rclone
               name: backup
-              resources: {}
+              resources:
+                requests:
+                  ephemeral-storage: "10Gi"
+                limits:
+                  ephemeral-storage: "10Gi"
               volumeMounts:
                 - name: pv
                   mountPath: /var/lib/pv
