@@ -16,6 +16,7 @@ spec:
                 - apt update; apt install -y rclone mysql-client;
                   rclone moveto --no-check-certificate OpenDrive:/OracleCloud/oracle3-pv/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/pv-old.tgz;
                   mysqldump -h bookstackdb.bookstack -u bookstack -p"<yourdbpass>" bookstackapp > /var/lib/pv/bookstack/bookstackapp.dump;
+                  mysqldump -h websitedb.website -u websitedb -p"websitedb" websitedb > /var/lib/pv/website/config/websitedb.dump;
                   tar zcv /var/lib/pv | rclone rcat --no-check-certificate OpenDrive:/OracleCloud/oracle3-pv/pv.tgz
               image: ubuntu
               name: backup
