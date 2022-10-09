@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: websitedb
+  name: websitedb
+  namespace: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websitedb
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: websitedb
+    spec:
+      containers:
+      - image: linuxserver/mariadb
+        name: websitedb
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "websitedb"
+        - name: MYSQL_DATABASE
+          value: "websitedb"
+        - name: MYSQL_USER
+          value: "websitedb"
+        - name: MYSQL_PASSWORD
+          value: "websitedb"
+        - name: TZ
+          value: "Europe/London"
+        volumeMounts:
+        - name: "config"
+          mountPath: "/config"
+        resources: {}
+      volumes:
+        - name: "config"
+          hostPath:
+            path: /var/lib/pv/website/config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}

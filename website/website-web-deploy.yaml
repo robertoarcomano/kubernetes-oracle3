@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: websiteweb
+  name: websiteweb
+  namespace: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websiteweb
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: websiteweb
+    spec:
+      containers:
+      - image: wordpress
+        name: websiteweb
+        volumeMounts:
+          - name: "html"
+            mountPath: "/var/www/html"
+        resources: {}
+      volumes:
+        - name: "html"
+          hostPath:
+            path: /var/lib/pv/website/html
+status: {}
+
