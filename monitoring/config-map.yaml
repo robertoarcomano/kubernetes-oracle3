@@ -163,3 +163,9 @@ data:
           - targets:
               - oracle1vpn.robertoarcomano.com:9100
               - oracle2vpn.robertoarcomano.com:9100
+    
+      - job_name: jenkins
+        static_configs:
+          - targets:
+              - jenkinsvpn.robertoarcomano.com
+        metrics_path: "/prometheus"
