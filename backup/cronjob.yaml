@@ -13,12 +13,12 @@ spec:
             - command:
                 - sh
                 - -c
-                - apt update; apt install -y rclone mysql-client;
+                - apt update; apt install -y mysql-client;
+                  apt install -y /var/lib/pv/rclone-v1.59.2-linux-arm64.deb;
                   rclone moveto --no-check-certificate OpenDrive:/OracleCloud/oracle3-pv/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/pv-old.tgz;
-                  mysqldump -h bookstackdb.bookstack -u bookstack -p"<yourdbpass>" bookstackapp > /var/lib/pv/bookstack/bookstackapp.dump;
-                  mysqldump -h websitedb.website -u websitedb -p"websitedb" websitedb > /var/lib/pv/website/config/websitedb.dump;
-                  tar zcvf /tmp/pv.tgz /var/lib/pv;
-                  rclone copy -P --no-check-certificate /tmp/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/
+                  mysqldump -h bookstackdb.bookstack --column-statistics=0 -u bookstack -p"<yourdbpass>" bookstackapp > /var/lib/pv/bookstack/bookstackapp.dump;
+                  mysqldump -h websitedb.website --column-statistics=0 -u websitedb -p"websitedb" websitedb > /var/lib/pv/website/config/websitedb.dump;
+                  rclone copy -P --transfers=20 --checkers=20 --no-check-certificate /var/lib/pv/ OpenDrive:/OracleCloud/oracle3-pv/
               image: ubuntu
               name: backup
               resources:
