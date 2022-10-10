@@ -4,7 +4,7 @@ metadata:
   name: backup
   namespace: backup
 spec:
-  schedule: "0 1 * * *"
+  schedule: "0 0 0 * *"
   jobTemplate:
     spec:
       template:
@@ -17,7 +17,8 @@ spec:
                   rclone moveto --no-check-certificate OpenDrive:/OracleCloud/oracle3-pv/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/pv-old.tgz;
                   mysqldump -h bookstackdb.bookstack -u bookstack -p"<yourdbpass>" bookstackapp > /var/lib/pv/bookstack/bookstackapp.dump;
                   mysqldump -h websitedb.website -u websitedb -p"websitedb" websitedb > /var/lib/pv/website/config/websitedb.dump;
-                  tar zcv /var/lib/pv | rclone rcat --no-check-certificate OpenDrive:/OracleCloud/oracle3-pv/pv.tgz
+                  tar zcvf /tmp/pv.tgz /var/lib/pv;
+                  rclone copy -P --no-check-certificate /tmp/pv.tgz OpenDrive:/OracleCloud/oracle3-pv/
               image: ubuntu
               name: backup
               resources:

@@ -24,10 +24,15 @@ spec:
         volumeMounts:
           - name: "html"
             mountPath: "/var/www/html"
+          - name: "apache2"
+            mountPath: "/etc/apache2"
         resources: {}
       volumes:
         - name: "html"
           hostPath:
             path: /var/lib/pv/website/html
+        - name: "apache2"
+          hostPath:
+            path: /var/lib/pv/website/apache2
 status: {}
 
