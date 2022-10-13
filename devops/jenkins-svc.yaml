@@ -9,9 +9,14 @@ metadata:
 spec:
   ports:
   - port: 8080
+    name: jenkins
     protocol: TCP
     targetPort: 8080
     nodePort: 32100
+  - port: 50000
+    name: jenkins-log
+    protocol: TCP
+    targetPort: 50000
   selector:
     app: jenkins
   type: NodePort

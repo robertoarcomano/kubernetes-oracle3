@@ -11,7 +11,9 @@ spec:
   - port: 50000
     protocol: TCP
     targetPort: 50000
+    nodePort: 30500
   selector:
     app: jenkins
+  type: NodePort
 status:
   loadBalancer: {}

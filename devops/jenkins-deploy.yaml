@@ -21,6 +21,11 @@ spec:
       containers:
         - image: jenkins/jenkins:lts
           name: jenkins
+          ports:
+            - containerPort: 8080
+              name: jenkins
+            - containerPort: 50000
+              name: jenkins-log
           resources: {}
           volumeMounts:
             - name: jenkins-home-volume
