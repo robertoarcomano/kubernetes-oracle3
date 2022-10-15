@@ -25,7 +25,7 @@ spec:
         - containerPort: 80
         env:
         - name: APP_URL
-          value: "http://docsvpn.robertoarcomano.com"
+          value: "http://docs.robertoarcomano.com"
         - name: DB_HOST
           value: "bookstackdb"
         - name: DB_USER
