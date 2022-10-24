@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: metabase
+  name: metabase
+  namespace: tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metabase
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: metabase
+    spec:
+      containers:
+      - image: iwalucas/metabase
+        name: metabase
+        resources: {}
+status: {}
