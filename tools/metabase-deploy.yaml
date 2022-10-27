@@ -22,4 +22,11 @@ spec:
       - image: iwalucas/metabase
         name: metabase
         resources: {}
+        volumeMounts:
+          - name: app
+            mountPath: /app
+      volumes:
+        - name: app
+          hostPath:
+            path: /var/lib/pv/metabase
 status: {}
