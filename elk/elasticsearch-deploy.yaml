@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: elasticsearch
+  name: elasticsearch
+  namespace: elk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
+        name: elasticsearch
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+        resources:
+          requests:
+            memory: 100M
+            cpu: 10m
+          limits:
+            memory: 20G
+            cpu: 1200m
+        volumeMounts:
+        - name: config
+          mountPath: /usr/share/elasticsearch/config
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
+      volumes:
+      - name: config
+        hostPath:
+          path: /var/lib/pv/elk/elasticsearch/config
+      - name: data
+        hostPath:
+          path: /var/lib/pv/elk/elasticsearch/data
+status: {}

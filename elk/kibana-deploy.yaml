@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kibana
+  name: kibana
+  namespace: elk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - image: docker.elastic.co/kibana/kibana:8.4.3
+        name: kibana
+        ports:
+        - containerPort: 5601
+        resources:
+          requests:
+            memory: 100M
+            cpu: 10m
+          limits:
+            memory: 2G
+            cpu: 500m
+        volumeMounts:
+        - name: config
+          mountPath: /usr/share/kibana/config
+        - name: data
+          mountPath: /usr/share/kibana/data
+      volumes:
+      - name: config
+        hostPath:
+          path: /var/lib/pv/elk/kibana/config
+      - name: data
+        hostPath:
+          path: /var/lib/pv/elk/kibana/data
+status: {}

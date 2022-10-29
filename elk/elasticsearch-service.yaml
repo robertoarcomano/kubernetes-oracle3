@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: elasticsearch
+  name: elasticsearch
+  namespace: elk
+spec:
+  ports:
+  - name: rest
+    port: 9200
+    protocol: TCP
+    targetPort: 9200
+  - name: comm
+    port: 9300
+    protocol: TCP
+    targetPort: 9300
+  selector:
+    app: elasticsearch
+  type: ClusterIP
+status:
+  loadBalancer: {}
