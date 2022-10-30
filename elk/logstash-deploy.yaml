@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: logstash
+  name: logstash
+  namespace: elk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logstash
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: logstash
+    spec:
+      containers:
+      - image: docker.elastic.co/logstash/logstash:8.4.3
+        name: logstash
+        resources: {}
+        volumeMounts:
+        - name: config
+          mountPath: /usr/share/logstash/config
+        - name: data
+          mountPath: /usr/share/logstash/data
+      volumes:
+      - name: config
+        hostPath:
+          path: /var/lib/pv/elk/logstash/config
+      - name: data
+        hostPath:
+          path: /var/lib/pv/elk/logstash/data
+status: {}
