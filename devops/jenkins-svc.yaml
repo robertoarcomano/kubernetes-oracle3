@@ -17,6 +17,11 @@ spec:
     name: jenkins-log
     protocol: TCP
     targetPort: 50000
+  - port: 32122
+    name: jenkins-ssh
+    protocol: TCP
+    nodePort: 32122
+    targetPort: 32122
   selector:
     app: jenkins
   type: NodePort

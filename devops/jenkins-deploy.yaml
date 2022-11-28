@@ -26,6 +26,8 @@ spec:
               name: jenkins
             - containerPort: 50000
               name: jenkins-log
+            - containerPort: 32122
+              name: jenkins-ssh
           resources: {}
           volumeMounts:
             - name: jenkins-home-volume
