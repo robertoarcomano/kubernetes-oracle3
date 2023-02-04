@@ -19,7 +19,7 @@ spec:
         app: websiteweb
     spec:
       containers:
-      - image: wordpress
+      - image: wordpress:6.0.2-php7.4
         name: websiteweb
         volumeMounts:
           - name: "html"
