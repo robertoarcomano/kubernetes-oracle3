@@ -1,0 +1,5 @@
+bookstack-ns.yaml
+deploy_db.yaml
+service_db.yaml
+deploy_web.yaml
+service_web.yaml
