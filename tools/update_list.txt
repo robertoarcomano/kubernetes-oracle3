@@ -1,0 +1,3 @@
+tools-ns.yaml
+metabase-deploy.yaml
+metabase-service.yaml
