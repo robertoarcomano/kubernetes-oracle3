@@ -24,7 +24,7 @@ spec:
         resources: {}
         volumeMounts:
           - name: app
-            mountPath: /app
+            mountPath: /app1
       volumes:
         - name: app
           hostPath:
