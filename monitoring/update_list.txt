@@ -7,4 +7,3 @@ node-exporter-daemonsets.yaml
 node-exporter-service.yaml
 prometheus-deployment.yaml
 prometheus-service.yaml
-
