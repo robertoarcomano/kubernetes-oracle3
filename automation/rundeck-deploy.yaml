@@ -24,15 +24,15 @@ spec:
         ports:
         - containerPort: 4440
         volumeMounts:
-          - name: "etc-rundeck"
-            mountPath: "/etc/rundeck"
+          - name: "etc"
+            mountPath: "/etc"
           - name: "var-lib-rundeck"
             mountPath: "/var/lib/rundeck"
         resources: {}
       volumes:
-        - name: "etc-rundeck"
+        - name: "etc"
           hostPath:
-            path: /var/lib/pv/rundeck/etc_rundeck
+            path: /var/lib/pv/rundeck/etc
         - name: "var-lib-rundeck"
           hostPath:
             path: /var/lib/pv/rundeck/var_lib_rundeck
