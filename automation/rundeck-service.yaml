@@ -8,9 +8,9 @@ metadata:
   namespace: automation
 spec:
   ports:
-  - port: 4443
+  - port: 4440
     protocol: TCP
-    targetPort: 4443
+    targetPort: 4440
     nodePort: 32440
   type: NodePort
   selector:

@@ -22,7 +22,7 @@ spec:
       - image: homelabs/rundeck
         name: rundeck
         ports:
-        - containerPort: 4443
+        - containerPort: 4440
         volumeMounts:
           - name: "etc-rundeck"
             mountPath: "/etc/rundeck"
