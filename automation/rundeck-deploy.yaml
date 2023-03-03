@@ -23,5 +23,12 @@ spec:
         name: rundeck
         ports:
         - containerPort: 4440
+        volumeMounts:
+          - name: "rundeck1"
+            mountPath: "/var/lib/rundeck1"
         resources: {}
+      volumes:
+        - name: "rundeck1"
+          hostPath:
+            path: /var/lib/pv/rundeck
 status: {}
