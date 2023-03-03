@@ -1,0 +1,5 @@
+elasticsearch-ns.yaml
+elasticsearch-deploy.yaml
+elasticsearch-service.yaml
+kibana-deploy.yaml
+kibana-service.yaml

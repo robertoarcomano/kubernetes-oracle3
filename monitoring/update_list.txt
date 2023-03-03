@@ -1,0 +1,11 @@
+monitoring-ns.yaml
+clusterRole.yaml
+grafana-datasource-config.yaml
+grafana-deployment.yaml
+grafana-service.yaml
+node-exporter-daemonsets.yaml
+node-exporter-service.yaml
+prometheus-deployment.yaml
+prometheus-ingress.yaml
+prometheus-service.yaml
+
