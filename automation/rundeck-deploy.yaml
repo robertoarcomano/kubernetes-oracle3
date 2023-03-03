@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rundeck
+  name: rundeck
+  namespace: automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rundeck
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: rundeck
+    spec:
+      containers:
+      - image: homelabs/rundeck
+        name: rundeck
+        ports:
+        - containerPort: 4440
+        resources: {}
+status: {}

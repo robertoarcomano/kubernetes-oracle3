@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: rundeck
+  name: rundeck
+  namespace: automation
+spec:
+  ports:
+  - port: 4440
+    protocol: TCP
+    targetPort: 4440
+    nodePort: 34440
+  selector:
+    app: rundeck
+status:
+  loadBalancer: {}
