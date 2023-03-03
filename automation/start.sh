@@ -16,7 +16,7 @@ kubectl create ns $AUTOMATION_NS
 kubectl apply -f $RUNDECK_DEPLOY
 
 # 3. Create rundeck service
-kubectl apply -f $RUNDECK_DEPLOY
+kubectl apply -f $RUNDECK_SERVICE
 
 # 4. Show everything
 kubectl -n $AUTOMATION_NS get all --show-labels

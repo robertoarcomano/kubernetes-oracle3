@@ -22,13 +22,18 @@ spec:
       - image: homelabs/rundeck
         name: rundeck
         ports:
-        - containerPort: 4440
+        - containerPort: 4443
         volumeMounts:
-          - name: "rundeck"
+          - name: "etc-rundeck"
+            mountPath: "/etc/rundeck"
+          - name: "var-lib-rundeck"
             mountPath: "/var/lib/rundeck"
         resources: {}
       volumes:
-        - name: "rundeck"
+        - name: "etc-rundeck"
           hostPath:
-            path: /var/lib/pv/rundeck
+            path: /var/lib/pv/rundeck/etc_rundeck
+        - name: "var-lib-rundeck"
+          hostPath:
+            path: /var/lib/pv/rundeck/var_lib_rundeck
 status: {}
