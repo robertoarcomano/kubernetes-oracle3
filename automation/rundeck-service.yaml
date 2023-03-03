@@ -12,6 +12,7 @@ spec:
     protocol: TCP
     targetPort: 4440
     nodePort: 34440
+  type: NodePort
   selector:
     app: rundeck
 status:
