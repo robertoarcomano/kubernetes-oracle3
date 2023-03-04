@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: rundeck
-  name: rundeck
+    app: mysql
+  name: mysql
   namespace: automation
 spec:
   ports:
@@ -14,6 +14,6 @@ spec:
     nodePort: 32306
   type: NodePort
   selector:
-    app: rundeck
+    app: mysql
 status:
   loadBalancer: {}
