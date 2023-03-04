@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mysql
+  name: mysql
+  namespace: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+          - name: "etc"
+            mountPath: "/etc1"
+          - name: "var-lib-mysql"
+            mountPath: "/var/lib/mysql1"
+        resources: {}
+      volumes:
+        - name: "etc"
+          hostPath:
+            path: /var/lib/pv/mysql/etc
+        - name: "var-lib-mysql"
+          hostPath:
+            path: /var/lib/pv/mysql/var_lib_mysql
+status: {}
