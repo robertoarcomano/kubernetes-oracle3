@@ -1,4 +1,3 @@
 automation-ns.yaml
 rundeck-deploy.yaml
 rundeck-service.yaml
-
