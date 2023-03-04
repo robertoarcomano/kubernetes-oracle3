@@ -23,6 +23,9 @@ spec:
         name: mysql
         ports:
         - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "mypassword"
         volumeMounts:
           - name: "etc"
             mountPath: "/etc1"
