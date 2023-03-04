@@ -28,9 +28,9 @@ spec:
           value: "mypassword"
         volumeMounts:
           - name: "etc"
-            mountPath: "/etc1"
+            mountPath: "/etc"
           - name: "var-lib-mysql"
-            mountPath: "/var/lib/mysql1"
+            mountPath: "/var/lib/mysql"
         resources: {}
       volumes:
         - name: "etc"
