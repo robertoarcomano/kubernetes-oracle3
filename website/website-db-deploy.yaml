@@ -19,7 +19,7 @@ spec:
         app: websitedb
     spec:
       containers:
-      - image: linuxserver/mariadb
+      - image: linuxserver/mariadb:10.6.13-r0-ls96
         name: websitedb
         ports:
         - containerPort: 3306
