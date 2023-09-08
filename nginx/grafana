@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 server {
+=======
+ server {
+>>>>>>> 568b912 (Added new nginx)
     listen [::]:80;
     listen 80;
 
     server_name grafana.robertoarcomano.com;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 568b912 (Added new nginx)
     root /var/www/html;
     index index.php;
 
@@ -16,6 +23,14 @@ server {
         deny all;
     }
 
+<<<<<<< HEAD
+=======
+    location ~*  \.(svg|svgz)$ {
+        types {}
+        default_type image/svg+xml;
+    }
+
+>>>>>>> 568b912 (Added new nginx)
     location = /favicon.ico {
         log_not_found off;
         access_log off;
@@ -56,6 +71,9 @@ server {
         access_log off;
         log_not_found off;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 568b912 (Added new nginx)
 }
 
