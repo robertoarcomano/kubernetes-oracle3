@@ -1,8 +1,9 @@
- server {
+server {
     listen [::]:80;
     listen 80;
 
     server_name grafana.robertoarcomano.com;
+
 
     root /var/www/html;
     index index.php;
@@ -13,11 +14,6 @@
 
     location ~ ^/\.user\.ini {
         deny all;
-    }
-
-    location ~*  \.(svg|svgz)$ {
-        types {}
-        default_type image/svg+xml;
     }
 
     location = /favicon.ico {
@@ -60,5 +56,6 @@
         access_log off;
         log_not_found off;
     }
+
 }
 
