@@ -32,10 +32,15 @@ spec:
           volumeMounts:
             - name: jenkins-home-volume
               mountPath: /var/jenkins_home
+            - name: jenkins-etc-resolv-volume
+              mountPath: /etc/resolv.conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
         - name: jenkins-home-volume
           hostPath:
             path: /var/lib/pv/jenkins
+        - name: jenkins-etc-resolv-volume
+          hostPath:
+            path: /var/lib/pv/jenkins/resolv.conf
 status: {}
